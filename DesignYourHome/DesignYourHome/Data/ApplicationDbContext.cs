@@ -188,8 +188,8 @@ namespace DesignYourHome.Data
                   new ContractorService()
                   {
                       ContractorServiceId=5,
-                      ContractorId=4,
-                      ServiceId=5
+                      ContractorId = 4,
+                      ServiceId = 5
                   }
                  );
 

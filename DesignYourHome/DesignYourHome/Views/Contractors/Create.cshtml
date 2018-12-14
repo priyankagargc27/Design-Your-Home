@@ -1,62 +1,78 @@
-﻿@model DesignYourHome.Models.Contractor
+﻿@model DesignYourHome.Models.ContractorViewModels.CreateContractorViewModel
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Create a Contractor Profile</h2>
 
-<h4>Contractor</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+<a class="showing purpleText" asp-action="Index"><i class="material-icons purple"></i>Back to Contractors</a>
+<br>
+<br>
+<form asp-action="Create">
+    <div class="form-horizontal">
+
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Contractor.Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Contractor.Name" class="form-control" />
+                <span asp-validation-for="Contractor.Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Contractor.City" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Contractor.City" class="form-control" />
+                <span asp-validation-for="Contractor.City" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Contractor.State" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Contractor.State" class="form-control" />
+                <span asp-validation-for="Contractor.State" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="State" class="control-label"></label>
-                <input asp-for="State" class="form-control" />
-                <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Contractor.PhoneNumber" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Contractor.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Contractor.PhoneNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Contractor.Website" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Contractor.Website" class="form-control" />
+                <span asp-validation-for="Contractor.Website" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Website" class="control-label"></label>
-                <input asp-for="Website" class="form-control" />
-                <span asp-validation-for="Website" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Contractor.CompanyName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Contractor.CompanyName" class="form-control" />
+                <span asp-validation-for="Contractor.CompanyName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CompanyName" class="control-label"></label>
-                <input asp-for="CompanyName" class="form-control" />
-                <span asp-validation-for="CompanyName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
+
     </div>
-</div>
+        <div class="form-group">
+            <label asp-for="Services" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+       <select multiple asp-for="SelectedServices" class="form-control" asp-items="@Model.Services"></select>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+     
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default purpleBtn btn-lg" />
+            </div>
+        </div>
+    </div>
+</form>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

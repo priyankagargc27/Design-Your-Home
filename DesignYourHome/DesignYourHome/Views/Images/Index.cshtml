@@ -1,0 +1,46 @@
+﻿@model DesignYourHome.Models.FilterResultsModel
+@{
+    ViewData["Title"] = "Index";
+}
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<h2 class="body-content-heading"><i class="material-icons md-36 purple"></i>  Find Image Ideas</h2>
+
+<div class="row">
+    <div class="col-md-3 content-box">
+        <h3>Filter</h3>
+        <form asp-action="Filter">
+            <div class="form-group">
+                <label asp-for="Rooms" class="control-label"></label>
+                @Html.ListBoxFor(m => m.FilterRoomIds,
+                                 Model.Rooms,
+                                 new { @class="form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="Styles" class="control-label"></label>
+                @Html.ListBoxFor(m => m.FilterStyleIds,
+                                 Model.Styles,
+                                 new { @class="form-control" })
+            </div>
+            <input type="submit" value="Filter" class="btn btn-default purpleBtn btn-lg" />
+        </form>
+    </div>
+    <div class="col-md-1 gutter"></div>
+    <div class="col-md-8 content-box large-box">
+        <div class="row">
+            @foreach (var item in @Model.Images)
+            {
+                <div class="col-md-4 img-div">
+                    <div class="img-container">
+                        <img src="@Html.DisplayFor(modelItem => item.Source)" class="image inspo-image"width="200" height="200">
+                        <div class="middle">
+                            <a class="btn btn-default purpleBtn" asp-action="AddToIdeaboard" asp-route-id="@item.ImageId"><i class="material-icons">add to favorites</i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

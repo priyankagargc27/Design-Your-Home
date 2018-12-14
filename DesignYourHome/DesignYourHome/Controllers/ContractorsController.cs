@@ -51,12 +51,12 @@ namespace DesignYourHome.Controllers
                                       from s in serviceIds
                                       where c.ServiceId == s
                                       select c).ToList();
-            var filteredContractors = (from c in allContractors
-                                       from s in contractorServices
-                                       where c.ContractorId == s.ContractorId
-                                       select c).ToList();
+            //var filteredContractors = (from c in allContractors
+            //                           from s in contractorServices
+            //                           where c.ContractorId == s.ContractorId
+            //                           select c).ToList();
             FindContractorsViewModel newModel = new FindContractorsViewModel(_context);
-            newModel.Contractors = filteredContractors;
+            //newModel.Contractors = filteredContractors;
             newModel.CurrentUser = user;
             return View(newModel);
         }
@@ -98,18 +98,21 @@ namespace DesignYourHome.Controllers
         public async Task<IActionResult> Create(CreateContractorViewModel model)
         {
             ModelState.Remove("Contractor.User");
+            ModelState.Remove("Contractor.UserId");
+
 
             if (ModelState.IsValid)
             {
                 var user = await GetCurrentUserAsync();
                 model.Contractor.User = user;
+                model.Contractor.UserId = user.Id;
+
                 _context.Add(model.Contractor);
                 await _context.SaveChangesAsync();
 
        
                 await _context.SaveChangesAsync();
-                if (model.SelectedServices.Count > 0)
-                {
+                
                     foreach (int serviceId in model.SelectedServices)
                     {
                         ContractorService contractorServices = new ContractorService()
@@ -119,30 +122,15 @@ namespace DesignYourHome.Controllers
                         };
                         await _context.AddAsync(contractorServices);
                     }
-                }
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+    ViewData["ServiceId"] = new SelectList(_context.Service,"serviceId","Name",model.Contractor.ContractorId);
+
             return View(model);
         }
-        //public async Task<IActionResult> Create([Bind("ContractorId,UserId,Name,City,State,PhoneNumber,Website,CompanyName")] Contractor contractor)
-        //{
-        //    ModelState.Remove("Contractor.User");
-        //    var user = await GetCurrentUserAsync();
-        //    contractor.User = user;
-        //    contractor.UserId = user.Id;
-        //    ModelState.Remove("UserId");
-        //    ModelState.Remove("User");
-        //    if (ModelState.IsValid)
-        //    {
-
-        //        _context.Add(contractor);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", contractor.UserId);
-        //    return View(contractor);
-        //}
+        
 
         // GET: Contractors/Edit/5
         public async Task<IActionResult> Edit(int? id)

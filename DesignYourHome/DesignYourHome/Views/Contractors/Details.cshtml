@@ -31,7 +31,7 @@
             @Html.DisplayNameFor(model => model.Contractor.Website)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Contractor.Website)
+            <a> @Html.DisplayFor(model => model.Contractor.Website)</a>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Contractor.City)
@@ -53,13 +53,16 @@
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Services)
+            
         </dt>
         <dd>
             @foreach (var item in @Model.Services)
             {
-                <p>@Html.DisplayFor(model => item.Name)</p>
+                <p>@Html.DisplayFor(model => item.Name) </p>
             }
         </dd>
+       
+
     </dl>
         
 
