@@ -106,18 +106,7 @@ namespace DesignYourHome.Controllers
                 _context.Add(model.Contractor);
                 await _context.SaveChangesAsync();
 
-                //if (model.SelectedTags.Count > 0)
-                //{
-                //    foreach (int tagId in model.SelectedTags)
-                //    {
-                //        ContractorTag contractorTags = new ContractorTag()
-                //        {
-                //            TagId = tagId,
-                //            ContractorId = model.Contractor.ContractorId
-                //        };
-                //        await _context.AddAsync(contractorTags);
-                //    }
-                //}
+       
                 await _context.SaveChangesAsync();
                 if (model.SelectedServices.Count > 0)
                 {
