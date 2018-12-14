@@ -152,6 +152,12 @@ namespace DesignYourHome.Data
                        ServiceId = 4,
                        Name = "Plumber",
                        ServiceCharge = 4500
+                   },
+                   new Service()
+                   {
+                       ServiceId=5,
+                       Name = "Interior Designer",
+                       ServiceCharge = 7300
                    }
                  );
             modelBuilder.Entity<ContractorService>().HasData(
@@ -178,6 +184,12 @@ namespace DesignYourHome.Data
                       ContractorServiceId = 4,
                       ContractorId = 3,
                       ServiceId = 4
+                  },
+                  new ContractorService()
+                  {
+                      ContractorServiceId=5,
+                      ContractorId=4,
+                      ServiceId=5
                   }
                  );
 

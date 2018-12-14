@@ -4,9 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h2 class="body-content-heading"><i class="material-icons purple md-36">build</i>Find Contractors</h2>
+<h2 class="body-content-heading"><i class="material-icons purple md-36"></i>Find Contractors</h2>
 
-<div class="row">
+@*<div class="row">
     <div class="col-md-3 content-box">
         <form asp-action="Filter">
             <div class="form-group">
@@ -17,7 +17,7 @@
             </div>
             <input type="submit" value="Filter" class="btn btn-default purpleBtn btn-lg" />
         </form>
-        <div>
+        <div>*@
             <a class="btn btn-default blueBtn" asp-action="Create">Create a Contractor Profile</a>
         </div>
     </div>
@@ -34,25 +34,27 @@
                             <img class="profile-pic" src="https://pngimage.net/wp-content/uploads/2018/05/blank-profile-picture-png-2.png"width="100" height="100">
                         </div>
                         <div class="col-md-8">
-                            <h4>@Html.DisplayFor(modelItem=>item.Name)</h4>
-                            <h4>@Html.DisplayFor(modelItem => item.CompanyName)</h4>
+                            <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                            <h5>@Html.DisplayFor(modelItem => item.CompanyName)</h5>
                             <p>@Html.DisplayFor(modelItem => item.City), @Html.DisplayFor(modelItem => item.State)</p>
+                            <h4>Services</h4>
+                            @foreach (var thing in item.Services)
+                            {
+                                <span>@Html.DisplayFor(modelItem => thing.Service.Name) |</span>
+                            }
+                            <h4>Phone Number </h4>
+                            <p>@Html.DisplayFor(modelItem => item.PhoneNumber)</p>
                         </div>
                     </div>
                     @*<div class="row">
                         <p class="col-md-12">@Html.DisplayFor(modelItem => item.Description)</p>
                     </div>*@
-                    <h4>Services</h4>
-                    @foreach (var thing in item.Services)
-                    {
-                        <span>@Html.DisplayFor(modelItem => thing.Service.Name) |</span>
-                    }
+                   
                     <div class="row contact-row-contractor">
-                        <div class="col-md-6"><p class="phone-number"><i class="material-icons purple">phone</i> <p>@Html.DisplayFor(modelItem => item.PhoneNumber)</p></div>
                         <div class="col-md-6 right">
-                            <a class="btn btn-default blueBtn" asp-action="Details" asp-route-id="@item.ContractorId"><i class="material-icons"></i> View Profile</a>
                         </div>
                     </div>
+                            <a class="btn btn-default blueBtn" asp-action="Details" asp-route-id="@item.ContractorId"><i class="material-icons"></i> View Profile</a>
                 </div>
             }
         </div>

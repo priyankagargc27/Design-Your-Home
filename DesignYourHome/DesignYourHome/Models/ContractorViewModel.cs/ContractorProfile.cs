@@ -19,7 +19,7 @@ namespace DesignYourHome.Models.ContractorViewModels
         {
             var ContractorServices = ctx.ContractorServices.Where(c => c.ContractorId == id).Select(c => c.ServiceId).ToList();
             var allServices = ctx.Service.ToList();
-            this.Services = (from s in allServices
+            Services = (from s in allServices
                              from c in ContractorServices
                              where s.ServiceId == c
                              select s).ToList();

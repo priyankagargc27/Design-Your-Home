@@ -1,60 +1,70 @@
-﻿@model DesignYourHome.Models.Contractor
+﻿@model DesignYourHome.Models.ContractorViewModels.ContractorProfile
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
 
 <div>
-    <h4>Contractor</h4>
-    <hr />
+    <h4>Contractor Profile</h4>
+
+
     <dl class="dl-horizontal">
+
+        @*<img class="profile-pic" src="https://pngimage.net/wp-content/uploads/2018/05/blank-profile-picture-png-2.png" width="150" height="150">*@
         <dt>
-            @Html.DisplayNameFor(model => model.User)
+            @Html.DisplayNameFor(model => model.Contractor.Name)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.User.Id)
+            @Html.DisplayFor(model => model.Contractor.Name)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contractor.CompanyName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contractor.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contractor.Website)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contractor.Website)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Contractor.City)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Contractor.City)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayNameFor(model => model.Contractor.State)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.City)
+            @Html.DisplayFor(model => model.Contractor.State)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.State)
+            @Html.DisplayNameFor(model => model.Contractor.PhoneNumber)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.State)
+            @Html.DisplayFor(model => model.Contractor.PhoneNumber)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            @Html.DisplayNameFor(model => model.Services)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Website)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Website)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CompanyName)
+            @foreach (var item in @Model.Services)
+            {
+                <p>@Html.DisplayFor(model => item.Name)</p>
+            }
         </dd>
     </dl>
+        
+
+    <h4><a class="showing purpleText" asp-action="Index"><i class="material-icons purple"></i>Back to Contractors</a></h4>
+
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ContractorId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+            <div>
+            </div>
