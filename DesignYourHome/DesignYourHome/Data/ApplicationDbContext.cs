@@ -22,7 +22,8 @@ namespace DesignYourHome.Data
         public DbSet<Contractor> Contractor { get; set; }
         public DbSet<Image> Image { get; set; }
         public DbSet<Style> Style { get; set; }
-
+        public DbSet<Ideaboard> Ideaboard { get; set; }
+        public DbSet<DesignYourHome.Models.IdeaImage> IdeaImage { get; set; }
 
         public DbSet<Service> Service { get; set; }
         public DbSet<ContractorService> ContractorServices { get; set; }

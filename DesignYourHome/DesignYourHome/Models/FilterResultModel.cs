@@ -24,8 +24,8 @@ namespace DesignYourHome.Models
         {
             List<Room> allRooms = ctx.Room.ToList();
             List<Style> allStyles = ctx.Style.ToList();
-            this.Rooms = new MultiSelectList(allRooms, "RoomId", "Name");
-            this.Styles = new MultiSelectList(allStyles, "StyleId", "Name");
+            Rooms = new MultiSelectList(allRooms, "RoomId", "Name");
+            Styles = new MultiSelectList(allStyles, "StyleId", "Name");
         }
 
     }
