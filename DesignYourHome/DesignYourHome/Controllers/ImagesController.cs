@@ -53,28 +53,7 @@ namespace DesignDirect.Controllers
 
             return View(model);
         }
-        // save the image to the ideaboard
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Save(AddImageViewModel model)
-        {
-            ModelState.Remove("User");
-            model.User = await GetCurrentUserAsync();
-            var ideaboardImage = new IdeaImage();
-            ideaboardImage.IdeaboardId = model.chosenIdeaboard;
-            ideaboardImage.ImageId = model.Image.ImageId;
-
-            if (ModelState.IsValid)
-            {
-                _context.Add(ideaboardImage);
-                await _context.SaveChangesAsync();
-
-               
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(model);
-        }
+       
         // Filter the images by style and room
         [HttpPost]
         [ValidateAntiForgeryToken]

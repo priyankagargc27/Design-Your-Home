@@ -36,8 +36,6 @@ namespace DesignYourHome.Models.ImageViewModels
                 Value = "0"
             });
 
-            //List<Tag> allTags = ctx.Tag.OrderBy(s => s.Name).ToList();
-            //this.Tags = new MultiSelectList(allTags, "TagId", "Name");
         }
     }
 }
