@@ -248,6 +248,13 @@ namespace DesignYourHome.Data
                       Name = "Farmhouse"
                   }
                   );
+            modelBuilder.Entity<Ideaboard>().HasData(
+                new Ideaboard()
+                {
+                    IdeaboardId = 1,
+                    UserId = user.Id,
+                    Title = "Test"
+                });
             modelBuilder.Entity<Image>().HasData(
                 new Image()
                 {

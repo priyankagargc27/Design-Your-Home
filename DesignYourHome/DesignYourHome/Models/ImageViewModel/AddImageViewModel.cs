@@ -21,7 +21,7 @@ namespace DesignYourHome.Models.ImageViewModels
         public AddImageViewModel() { }
         public AddImageViewModel(ApplicationDbContext ctx, ApplicationUser user)
         {
-            IdeaboardId = ctx.Ideaboard.Where(o => o.User.Id == user.Id)
+            this.IdeaboardId = ctx.Ideaboard.Where(o => o.User.Id == user.Id)
                                     .OrderBy(l => l.Title)
                                     .AsEnumerable()
                                     .Select(li => new SelectListItem
@@ -30,7 +30,7 @@ namespace DesignYourHome.Models.ImageViewModels
                                         Value = li.IdeaboardId.ToString()
                                     }).ToList();
 
-            IdeaboardId.Insert(0, new SelectListItem
+            this.IdeaboardId.Insert(0, new SelectListItem
             {
                 Text = "Choose an Ideaboard...",
                 Value = "0"

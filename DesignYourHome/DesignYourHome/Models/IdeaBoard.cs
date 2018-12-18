@@ -11,7 +11,8 @@ namespace DesignYourHome.Models
     {
         [Key]
         public int IdeaboardId { get; set; }
-
+        [Required]
+        public string UserId { get; set; }
         [Required]
         public string Title { get; set; }
 

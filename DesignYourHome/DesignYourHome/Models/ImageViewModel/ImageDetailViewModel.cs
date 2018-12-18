@@ -7,7 +7,7 @@ using System.Linq;
 using DesignYourHome.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace DesignYourHome.Models.ImageDetailViewModels
+namespace DesignYourHome.Models.ImageViewModels
 {
     public class ImageDetailViewModel
     {

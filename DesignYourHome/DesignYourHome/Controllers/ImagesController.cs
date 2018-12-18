@@ -9,9 +9,8 @@ using DesignYourHome.Data;
 using DesignYourHome.Models;
 using DesignYourHome.Models.ImageViewModels;
 using Microsoft.AspNetCore.Identity;
-using DesignYourHome.Models.ImageDetailViewModels;
 
-namespace DesignDirect.Controllers
+namespace DesignYourHome.Controllers
 {
     public class ImagesController : Controller
     {
@@ -44,7 +43,7 @@ namespace DesignDirect.Controllers
 
             var user = await GetCurrentUserAsync();
 
-            var model = new AddImageViewModel(_context, user);
+            AddImageViewModel model = new AddImageViewModel(_context, user);
 
             model.Image = await _context.Image
                 .Include(i => i.Room)
@@ -53,7 +52,28 @@ namespace DesignDirect.Controllers
 
             return View(model);
         }
-       
+        // save the image to the ideaboard
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Save(AddImageViewModel model)
+        {
+            ModelState.Remove("User");
+            model.User = await GetCurrentUserAsync();
+            var ideaboardImage = new IdeaImage();
+            ideaboardImage.IdeaboardId = model.chosenIdeaboard;
+            ideaboardImage.ImageId = model.Image.ImageId;
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(ideaboardImage);
+                await _context.SaveChangesAsync();
+
+               
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
         // Filter the images by style and room
         [HttpPost]
         [ValidateAntiForgeryToken]
