@@ -6,10 +6,7 @@
 
 <h2 class="body-content-heading"><i class="material-icons purple md-36"></i>My Designs</h2>
 
-@*<div class="row">
-    <div class="col-md-7 content-box">
-        <div class="row center">
-            <div class="col-md-5 ideaboard create-new">*@
+
                 <a class="purpleText" style="font-size: 20px" asp-action="Create">
                     <i class="material-icons purple md-75" style="margin-top: 25%"></i>
                     <h4>New Design</h4>
@@ -18,12 +15,10 @@
             {<ul>
                 <li>
                     <h4 class="purpleText image" style="margin-top: .08%">@Html.DisplayFor(modelItem => item.Title)</h4>
-                      @*<div class="middle">*@
-                        <a class="btn btn-danger" asp-action="Details" asp-route-id="@item.IdeaboardId">View Design</a>
+                    <a class="btn btn-danger" asp-action="Details" asp-route-id="@item.IdeaboardId">View Design</a>
                      </li>
     </ul>
-                      @*</div>*@
-                @*</div>*@
+                      
             }
 
    

@@ -10,33 +10,29 @@
     <form asp-action="Save">
         <input type="hidden" asp-for="Image.ImageId" />
         <input type="hidden" asp-for="Image.Source" />
-        <div class="col-md-6 center">
             <img src="@Model.Image.Source">
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="col-md-12 dropdown">
-                    @Html.DropDownList(
-                        "chosenIdeaboard",
-                        @Model.IdeaboardId,
-                        new
-                        {
-                            @name = "Ideaboard.IdeaboardId"
-                        }
-                    )
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12 selectBox">
-                   
-                    <div class="form-group btnGroup">
-                        <input type="submit" value="Save" class="btn btn-default purpleBtn" />
-                        <a class="btn btn-default" asp-action="Index">Cancel</a>
-                    </div>
-                </div>
-            </div>
+        
+<div class="choosedropdown">
+    <div class="dropdown-content">
+
+        @Html.DropDownList(
+            "chosenIdeaboard",
+            @Model.IdeaboardId,
+            new
+            {
+                @name = "Ideaboard.IdeaboardId"
+            }
+        )
+    </div>
+        </div>
+    <div class="form-group">
+        <div class="selectBox">
+
+            <input type="submit" value="Save" class="btn btn-default purpleBtn" />
+            <a class="btn btn-default" asp-action="Index">Cancel</a>
+        </div>
+    </div>
     </form>
 </div>
-</div>
-<div>
-</div>
+
