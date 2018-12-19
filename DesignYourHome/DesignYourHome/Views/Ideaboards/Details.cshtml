@@ -1,24 +1,47 @@
-﻿@model DesignYourHome.Models.Ideaboard
+﻿@model DesignYourHome.Models.ImageViewModels.ImageDetailViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Ideaboard.Title)</h2>
 
 <div>
-    <h4>Ideaboard</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-    </dl>
+    <a class="showing purpleText" asp-action="Index"><i class="material-icons purple"></i>Back to Ideaboards</a>
+    <br>
+    <br>
+    <br>
+    <div class="row container">
+        @foreach (var image in @Model.Images)
+        {
+            <div class="col-md-4 img-div">
+                <div class="img-container">
+                    <img src="@Html.DisplayFor(modelItem => image.Source)" class="image" width="300" height="300">
+                </div>
+                    <a class="pointer" data-toggle="modal" data-target="#modal-@Html.DisplayFor(modelItem => image.ImageId)"><i class="material-icons purple md-48">View Image</i></a>
+            </div>
+            <div id="modal-@Html.DisplayFor(modelItem => image.ImageId)" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <img src="@Html.DisplayFor(modelItem => image.Source)" width="550" height="550">
+                        </div>
+                        <div class="modal-footer">
+                            <a asp-action="DeleteImage" asp-route-id="@image.ImageId" asp-route-ideaboardId="@Model.Ideaboard.IdeaboardId" class="btn btn-danger">Delete Image</a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.IdeaboardId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<br>
+<br>
+<div class="btnGroup center">
+    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.Ideaboard.IdeaboardId">Delete Design</a>
 </div>

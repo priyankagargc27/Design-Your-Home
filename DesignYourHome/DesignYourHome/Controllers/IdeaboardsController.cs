@@ -13,13 +13,13 @@ using DesignYourHome.Models.ImageViewModels;
 
 namespace DesignYourHome.Controllers
 {
-    public class IdeaboardController : Controller
+    public class IdeaboardsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public IdeaboardController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public IdeaboardsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -36,7 +36,7 @@ namespace DesignYourHome.Controllers
             IdeaboardsViewModel model = new IdeaboardsViewModel();
             var user = await GetCurrentUserAsync();
             model.Ideaboards = await _context.Ideaboard.Where(i => i.User.Id == user.Id).ToListAsync();
-            
+
             var allContractors = await _context.Contractor.Include(i => i.User).Include(f => f.Services).ToListAsync();
             model.MatchingContractors = (from c in allContractors
                                          select c).Distinct().Take(6).ToList();
@@ -76,15 +76,23 @@ namespace DesignYourHome.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdeaboardId,Title")] Ideaboard ideaboard)
+        public async Task<IActionResult> Create(Ideaboard ideaboard)
         {
+            ModelState.Remove("Room.User");
+            var user = await GetCurrentUserAsync();
+            ideaboard.User = user;
+            ideaboard.UserId = user.Id;
+            ModelState.Remove("UserId");
+            ModelState.Remove("User");
             if (ModelState.IsValid)
             {
                 _context.Add(ideaboard);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            //ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", room.UserId);
             return View(ideaboard);
         }
 
@@ -172,5 +180,21 @@ namespace DesignYourHome.Controllers
         {
             return _context.Ideaboard.Any(e => e.IdeaboardId == id);
         }
-    }
-}
+        public async Task<IActionResult> DeleteImage(int id, int ideaboardId)
+        {
+            var user = await GetCurrentUserAsync();
+            var ideaImages = await _context.IdeaImage.Where(i => i.IdeaboardId == ideaboardId).ToListAsync();
+            var ideaImage = (from i in ideaImages
+                                  where i.ImageId == id
+                                  select i).First();
+
+            _context.IdeaImage.Remove(ideaImage);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Details", new { id = ideaboardId });
+        }
+
+
+    } }
+
+    
+

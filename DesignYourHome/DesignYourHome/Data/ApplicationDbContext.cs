@@ -188,7 +188,7 @@ namespace DesignYourHome.Data
                   },
                   new ContractorService()
                   {
-                      ContractorServiceId=5,
+                      ContractorServiceId=6,
                       ContractorId = 4,
                       ServiceId = 5
                   }

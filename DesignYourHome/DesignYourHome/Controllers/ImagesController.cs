@@ -33,6 +33,7 @@ namespace DesignYourHome.Controllers
             return View(model);
         }
 
+       
         // GET: Image/Details/5
         public async Task<IActionResult> AddToIdeaboard(int? id)
         {

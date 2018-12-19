@@ -33,8 +33,8 @@
                     @*<li><a asp-area="" asp-controller="Home" asp-action="Index">Design Your Home</a></li>*@
                     <li><a asp-area="" asp-controller="Rooms" asp-action="Index">Room</a></li>
                     <li><a asp-area="" asp-controller="Contractors" asp-action="Index">Find Contractors</a></li>
-                    <li><a asp-area="" asp-controller="Images" asp-action="Index">Find Image Ideas</a></li>
-                    <li><a asp-area="" asp-controller="Ideaboard" asp-action="Index">My Ideaboards</a></li>
+                    <li><a asp-area="" asp-controller="Images" asp-action="Index">Find Design Ideas</a></li>
+                    <li><a asp-area="" asp-controller="Ideaboards" asp-action="Index">Design Board</a></li>
 
                 </ul>
                 <partial name="_LoginPartial" />
@@ -48,8 +48,8 @@
         @RenderBody()
         <hr />
         @*<footer>
-            <p>&copy; 2018 - DesignYourHome</p>
-        </footer>*@
+                <p>&copy; 2018 - DesignYourHome</p>
+            </footer>*@
     </div>
 
     <environment include="Development">
@@ -74,5 +74,6 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DesignYourHome.Migrations
 {
-    public partial class startmigration : Migration
+    public partial class NewMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -96,7 +96,7 @@ namespace DesignYourHome.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -117,7 +117,7 @@ namespace DesignYourHome.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -137,7 +137,7 @@ namespace DesignYourHome.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -155,13 +155,13 @@ namespace DesignYourHome.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -181,7 +181,7 @@ namespace DesignYourHome.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -206,7 +206,27 @@ namespace DesignYourHome.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ideaboard",
+                columns: table => new
+                {
+                    IdeaboardId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<string>(nullable: false),
+                    Title = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ideaboard", x => x.IdeaboardId);
+                    table.ForeignKey(
+                        name: "FK_Ideaboard_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -227,11 +247,11 @@ namespace DesignYourHome.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "contractorServices",
+                name: "ContractorServices",
                 columns: table => new
                 {
                     ContractorServiceId = table.Column<int>(nullable: false)
@@ -241,19 +261,19 @@ namespace DesignYourHome.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_contractorServices", x => x.ContractorServiceId);
+                    table.PrimaryKey("PK_ContractorServices", x => x.ContractorServiceId);
                     table.ForeignKey(
-                        name: "FK_contractorServices_Contractor_ContractorId",
+                        name: "FK_ContractorServices_Contractor_ContractorId",
                         column: x => x.ContractorId,
                         principalTable: "Contractor",
                         principalColumn: "ContractorId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_contractorServices_Service_ServiceId",
+                        name: "FK_ContractorServices_Service_ServiceId",
                         column: x => x.ServiceId,
                         principalTable: "Service",
                         principalColumn: "ServiceId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -275,7 +295,7 @@ namespace DesignYourHome.Migrations
                         column: x => x.ContractorId,
                         principalTable: "Contractor",
                         principalColumn: "ContractorId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_FixHome_Room_RoomId",
                         column: x => x.RoomId,
@@ -308,19 +328,45 @@ namespace DesignYourHome.Migrations
                         column: x => x.RoomId,
                         principalTable: "Room",
                         principalColumn: "RoomId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Image_Style_StyleId",
                         column: x => x.StyleId,
                         principalTable: "Style",
                         principalColumn: "StyleId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IdeaImage",
+                columns: table => new
+                {
+                    IdeaImageId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ImageId = table.Column<int>(nullable: false),
+                    IdeaboardId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IdeaImage", x => x.IdeaImageId);
+                    table.ForeignKey(
+                        name: "FK_IdeaImage_Ideaboard_IdeaboardId",
+                        column: x => x.IdeaboardId,
+                        principalTable: "Ideaboard",
+                        principalColumn: "IdeaboardId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_IdeaImage_Image_ImageId",
+                        column: x => x.ImageId,
+                        principalTable: "Image",
+                        principalColumn: "ImageId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "StreetAddress", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "08e65fba-3e54-41c7-bf06-a0a020ee168b", 0, "f6408d62-9c1f-49cc-b72a-a5d34ab15a03", "admin@admin.com", true, "admin", "admin", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAELSjEwa3BZy/GEj2rR5LwD3YFxlRklpECesz2oKCpuo4NruAEKQqBccIV4rYLdgqXA==", null, false, "5f1fcccc-0ab3-45de-9eca-59446c4ca060", "123 Infinity Way", false, "admin@admin.com" });
+                values: new object[] { "0da28dc6-ae72-434e-9e4f-1abd2bd76d01", 0, "37f06fa3-a070-4492-ae4b-38039ff877cf", "admin@admin.com", true, "admin", "admin", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEIBmQlAyMGELxMSAtCwq3OachW0jBAVsGpN4EiUoBQF2BDvfloTff6VJqz8dUnQ+TQ==", null, false, "95de6189-1e60-488d-9276-e19b3c626f0f", "123 Infinity Way", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Service",
@@ -330,7 +376,8 @@ namespace DesignYourHome.Migrations
                     { 1, "Flooring", 2500 },
                     { 2, "Painter", 1500 },
                     { 3, "Electrician", 4500 },
-                    { 4, "Plumber", 4500 }
+                    { 4, "Plumber", 4500 },
+                    { 5, "Interior Designer", 7300 }
                 });
 
             migrationBuilder.InsertData(
@@ -350,20 +397,37 @@ namespace DesignYourHome.Migrations
                 columns: new[] { "ContractorId", "City", "CompanyName", "Name", "PhoneNumber", "State", "UserId", "Website" },
                 values: new object[,]
                 {
-                    { 1, "Franklin", "Fixhome", "John Doe", "615-847-3636", "Tenneessee", "08e65fba-3e54-41c7-bf06-a0a020ee168b", "www.fixhome.com" },
-                    { 2, "Spring Hill", "Pulte", "Will Healy", "625-337-3326", "Tenneessee", "08e65fba-3e54-41c7-bf06-a0a020ee168b", "www.Pulte.com" },
-                    { 3, "Brentwood ", "Ryan", "Adam Sandler", "625-567-3326", "Tenneessee", "08e65fba-3e54-41c7-bf06-a0a020ee168b", "www.Ryan.com" },
-                    { 4, "Nashville ", "SaraRayInteriorDesign", "Sara Ray", "625-567-3426", "Tenneessee", "08e65fba-3e54-41c7-bf06-a0a020ee168b", "www.SaraRayInteriorDesign.com" }
+                    { 1, "Franklin", "Fixhome", "John Doe", "615-847-3636", "Tenneessee", "0da28dc6-ae72-434e-9e4f-1abd2bd76d01", "www.fixhome.com" },
+                    { 2, "Spring Hill", "Pulte", "Will Healy", "625-337-3326", "Tenneessee", "0da28dc6-ae72-434e-9e4f-1abd2bd76d01", "www.Pulte.com" },
+                    { 3, "Brentwood ", "Ryan", "Adam Sandler", "625-567-3326", "Tenneessee", "0da28dc6-ae72-434e-9e4f-1abd2bd76d01", "www.Ryan.com" },
+                    { 4, "Nashville ", "SaraRayInteriorDesign", "Sara Ray", "625-567-3426", "Tenneessee", "0da28dc6-ae72-434e-9e4f-1abd2bd76d01", "www.SaraRayInteriorDesign.com" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Ideaboard",
+                columns: new[] { "IdeaboardId", "Title", "UserId" },
+                values: new object[] { 1, "Test", "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" });
 
             migrationBuilder.InsertData(
                 table: "Room",
                 columns: new[] { "RoomId", "Design", "Name", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Wooden Floor", "Living Room", "08e65fba-3e54-41c7-bf06-a0a020ee168b" },
-                    { 2, "Decor", "Dinnign Room", "08e65fba-3e54-41c7-bf06-a0a020ee168b" },
-                    { 3, "Tiles", "BathRoom", "08e65fba-3e54-41c7-bf06-a0a020ee168b" }
+                    { 1, "Wooden Floor", "Living Room", "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" },
+                    { 2, "Decor", "Dinnign Room", "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" },
+                    { 3, "Tiles", "BathRoom", "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ContractorServices",
+                columns: new[] { "ContractorServiceId", "ContractorId", "ServiceId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 2, 2, 2 },
+                    { 3, 3, 3 },
+                    { 4, 3, 4 },
+                    { 6, 4, 5 }
                 });
 
             migrationBuilder.InsertData(
@@ -371,9 +435,9 @@ namespace DesignYourHome.Migrations
                 columns: new[] { "FixHomeId", "ContractorId", "Description", "RoomId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, 1, null, 1, "08e65fba-3e54-41c7-bf06-a0a020ee168b" },
-                    { 2, 4, null, 2, "08e65fba-3e54-41c7-bf06-a0a020ee168b" },
-                    { 3, 3, null, 2, "08e65fba-3e54-41c7-bf06-a0a020ee168b" }
+                    { 1, 1, null, 1, "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" },
+                    { 2, 4, null, 2, "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" },
+                    { 3, 3, null, 2, "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" }
                 });
 
             migrationBuilder.InsertData(
@@ -384,17 +448,6 @@ namespace DesignYourHome.Migrations
                     { 1, 1, "https://www.iheartnaptime.net/wp-content/uploads/2013/05/wood-floor-designs-2.jpg", 1 },
                     { 2, 2, "https://i.pinimg.com/originals/6b/6c/8d/6b6c8d8a5c415fc8f72d16f439ce6eba.jpg", 2 },
                     { 3, 3, "http://www.therunnerssoul.com/wp-content/uploads/2018/08/traditional-dining-room-decorating-photos-casual-dining-room-decorating-ideas-modern-dining-room-design-pictures.jpg", 4 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "contractorServices",
-                columns: new[] { "ContractorServiceId", "ContractorId", "ServiceId" },
-                values: new object[,]
-                {
-                    { 1, 1, 1 },
-                    { 2, 2, 2 },
-                    { 3, 3, 3 },
-                    { 4, 3, 4 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -442,13 +495,13 @@ namespace DesignYourHome.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_contractorServices_ContractorId",
-                table: "contractorServices",
+                name: "IX_ContractorServices_ContractorId",
+                table: "ContractorServices",
                 column: "ContractorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_contractorServices_ServiceId",
-                table: "contractorServices",
+                name: "IX_ContractorServices_ServiceId",
+                table: "ContractorServices",
                 column: "ServiceId");
 
             migrationBuilder.CreateIndex(
@@ -465,6 +518,21 @@ namespace DesignYourHome.Migrations
                 name: "IX_FixHome_UserId",
                 table: "FixHome",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ideaboard_UserId",
+                table: "Ideaboard",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IdeaImage_IdeaboardId",
+                table: "IdeaImage",
+                column: "IdeaboardId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IdeaImage_ImageId",
+                table: "IdeaImage",
+                column: "ImageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Image_RoomId",
@@ -500,13 +568,13 @@ namespace DesignYourHome.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "contractorServices");
+                name: "ContractorServices");
 
             migrationBuilder.DropTable(
                 name: "FixHome");
 
             migrationBuilder.DropTable(
-                name: "Image");
+                name: "IdeaImage");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -516,6 +584,12 @@ namespace DesignYourHome.Migrations
 
             migrationBuilder.DropTable(
                 name: "Contractor");
+
+            migrationBuilder.DropTable(
+                name: "Ideaboard");
+
+            migrationBuilder.DropTable(
+                name: "Image");
 
             migrationBuilder.DropTable(
                 name: "Room");

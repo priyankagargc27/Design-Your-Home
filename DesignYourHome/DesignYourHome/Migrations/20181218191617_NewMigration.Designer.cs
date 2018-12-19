@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesignYourHome.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181218034315_start")]
-    partial class start
+    [Migration("20181218191617_NewMigration")]
+    partial class NewMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,7 +81,7 @@ namespace DesignYourHome.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "dc31bda2-96b1-4c2c-ad23-a38d23df7cf3", AccessFailedCount = 0, ConcurrencyStamp = "dbad5dfb-956e-4bff-b1f9-a994cf56a4a8", Email = "admin@admin.com", EmailConfirmed = true, FirstName = "admin", LastName = "admin", LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN@ADMIN.COM", PasswordHash = "AQAAAAEAACcQAAAAEBuEyJgpAcxFZL7BR3wWdfAedAKstdOnBHS4G2C2DxYOKSaRjswbutzWvcclE+fVlA==", PhoneNumberConfirmed = false, SecurityStamp = "6c98d0dd-b5d5-4b3d-8d26-aa667a8c0b33", StreetAddress = "123 Infinity Way", TwoFactorEnabled = false, UserName = "admin@admin.com" }
+                        new { Id = "0da28dc6-ae72-434e-9e4f-1abd2bd76d01", AccessFailedCount = 0, ConcurrencyStamp = "37f06fa3-a070-4492-ae4b-38039ff877cf", Email = "admin@admin.com", EmailConfirmed = true, FirstName = "admin", LastName = "admin", LockoutEnabled = false, NormalizedEmail = "ADMIN@ADMIN.COM", NormalizedUserName = "ADMIN@ADMIN.COM", PasswordHash = "AQAAAAEAACcQAAAAEIBmQlAyMGELxMSAtCwq3OachW0jBAVsGpN4EiUoBQF2BDvfloTff6VJqz8dUnQ+TQ==", PhoneNumberConfirmed = false, SecurityStamp = "95de6189-1e60-488d-9276-e19b3c626f0f", StreetAddress = "123 Infinity Way", TwoFactorEnabled = false, UserName = "admin@admin.com" }
                     );
                 });
 
@@ -117,10 +117,10 @@ namespace DesignYourHome.Migrations
                     b.ToTable("Contractor");
 
                     b.HasData(
-                        new { ContractorId = 1, City = "Franklin", CompanyName = "Fixhome", Name = "John Doe", PhoneNumber = "615-847-3636", State = "Tenneessee", UserId = "dc31bda2-96b1-4c2c-ad23-a38d23df7cf3", Website = "www.fixhome.com" },
-                        new { ContractorId = 2, City = "Spring Hill", CompanyName = "Pulte", Name = "Will Healy", PhoneNumber = "625-337-3326", State = "Tenneessee", UserId = "dc31bda2-96b1-4c2c-ad23-a38d23df7cf3", Website = "www.Pulte.com" },
-                        new { ContractorId = 3, City = "Brentwood ", CompanyName = "Ryan", Name = "Adam Sandler", PhoneNumber = "625-567-3326", State = "Tenneessee", UserId = "dc31bda2-96b1-4c2c-ad23-a38d23df7cf3", Website = "www.Ryan.com" },
-                        new { ContractorId = 4, City = "Nashville ", CompanyName = "SaraRayInteriorDesign", Name = "Sara Ray", PhoneNumber = "625-567-3426", State = "Tenneessee", UserId = "dc31bda2-96b1-4c2c-ad23-a38d23df7cf3", Website = "www.SaraRayInteriorDesign.com" }
+                        new { ContractorId = 1, City = "Franklin", CompanyName = "Fixhome", Name = "John Doe", PhoneNumber = "615-847-3636", State = "Tenneessee", UserId = "0da28dc6-ae72-434e-9e4f-1abd2bd76d01", Website = "www.fixhome.com" },
+                        new { ContractorId = 2, City = "Spring Hill", CompanyName = "Pulte", Name = "Will Healy", PhoneNumber = "625-337-3326", State = "Tenneessee", UserId = "0da28dc6-ae72-434e-9e4f-1abd2bd76d01", Website = "www.Pulte.com" },
+                        new { ContractorId = 3, City = "Brentwood ", CompanyName = "Ryan", Name = "Adam Sandler", PhoneNumber = "625-567-3326", State = "Tenneessee", UserId = "0da28dc6-ae72-434e-9e4f-1abd2bd76d01", Website = "www.Ryan.com" },
+                        new { ContractorId = 4, City = "Nashville ", CompanyName = "SaraRayInteriorDesign", Name = "Sara Ray", PhoneNumber = "625-567-3426", State = "Tenneessee", UserId = "0da28dc6-ae72-434e-9e4f-1abd2bd76d01", Website = "www.SaraRayInteriorDesign.com" }
                     );
                 });
 
@@ -146,7 +146,8 @@ namespace DesignYourHome.Migrations
                         new { ContractorServiceId = 1, ContractorId = 1, ServiceId = 1 },
                         new { ContractorServiceId = 2, ContractorId = 2, ServiceId = 2 },
                         new { ContractorServiceId = 3, ContractorId = 3, ServiceId = 3 },
-                        new { ContractorServiceId = 4, ContractorId = 3, ServiceId = 4 }
+                        new { ContractorServiceId = 4, ContractorId = 3, ServiceId = 4 },
+                        new { ContractorServiceId = 6, ContractorId = 4, ServiceId = 5 }
                     );
                 });
 
@@ -176,9 +177,9 @@ namespace DesignYourHome.Migrations
                     b.ToTable("FixHome");
 
                     b.HasData(
-                        new { FixHomeId = 1, ContractorId = 1, RoomId = 1, UserId = "dc31bda2-96b1-4c2c-ad23-a38d23df7cf3" },
-                        new { FixHomeId = 2, ContractorId = 4, RoomId = 2, UserId = "dc31bda2-96b1-4c2c-ad23-a38d23df7cf3" },
-                        new { FixHomeId = 3, ContractorId = 3, RoomId = 2, UserId = "dc31bda2-96b1-4c2c-ad23-a38d23df7cf3" }
+                        new { FixHomeId = 1, ContractorId = 1, RoomId = 1, UserId = "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" },
+                        new { FixHomeId = 2, ContractorId = 4, RoomId = 2, UserId = "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" },
+                        new { FixHomeId = 3, ContractorId = 3, RoomId = 2, UserId = "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" }
                     );
                 });
 
@@ -201,7 +202,7 @@ namespace DesignYourHome.Migrations
                     b.ToTable("Ideaboard");
 
                     b.HasData(
-                        new { IdeaboardId = 1, Title = "Test", UserId = "dc31bda2-96b1-4c2c-ad23-a38d23df7cf3" }
+                        new { IdeaboardId = 1, Title = "Test", UserId = "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" }
                     );
                 });
 
@@ -274,9 +275,9 @@ namespace DesignYourHome.Migrations
                     b.ToTable("Room");
 
                     b.HasData(
-                        new { RoomId = 1, Design = "Wooden Floor", Name = "Living Room", UserId = "dc31bda2-96b1-4c2c-ad23-a38d23df7cf3" },
-                        new { RoomId = 2, Design = "Decor", Name = "Dinnign Room", UserId = "dc31bda2-96b1-4c2c-ad23-a38d23df7cf3" },
-                        new { RoomId = 3, Design = "Tiles", Name = "BathRoom", UserId = "dc31bda2-96b1-4c2c-ad23-a38d23df7cf3" }
+                        new { RoomId = 1, Design = "Wooden Floor", Name = "Living Room", UserId = "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" },
+                        new { RoomId = 2, Design = "Decor", Name = "Dinnign Room", UserId = "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" },
+                        new { RoomId = 3, Design = "Tiles", Name = "BathRoom", UserId = "0da28dc6-ae72-434e-9e4f-1abd2bd76d01" }
                     );
                 });
 
