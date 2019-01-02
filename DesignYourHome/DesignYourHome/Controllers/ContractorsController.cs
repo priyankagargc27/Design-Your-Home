@@ -52,12 +52,12 @@ namespace DesignYourHome.Controllers
                                       from s in serviceIds
                                       where c.ServiceId == s
                                       select c).ToList();
-            //var filteredContractors = (from c in allContractors
-            //                           from s in contractorServices
-            //                           where c.ContractorId == s.ContractorId
-            //                           select c).ToList();
+            var filteredContractors = (from c in allContractors
+                                       from s in contractorServices
+                                       where c.ContractorId == s.ContractorId
+                                      select c).ToList();
             FindContractorsViewModel newModel = new FindContractorsViewModel(_context);
-            //newModel.Contractors = filteredContractors;
+            newModel.Contractors = filteredContractors;
             newModel.CurrentUser = user;
             return View(newModel);
         }

@@ -21,6 +21,8 @@ namespace DesignYourHome.Models
         [Display(Name = "Street Address")]
         public string StreetAddress { get; set; }
 
+       
+
 
         // Set up PK -> FK relationships to other objects
         public virtual ICollection<Room> Rooms { get; set; }
