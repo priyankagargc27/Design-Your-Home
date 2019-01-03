@@ -18,7 +18,6 @@
             <input type="submit" value="Filter" class="btn btn-default purpleBtn btn-lg" />
         </form>
         <div>
-            <a class="btn btn-default blueBtn" asp-action="Create">Create a Contractor Profile</a>
         </div>
     </div>
     <div class="col-md-1 gutter"></div>
@@ -34,12 +33,12 @@
                             <img class="profile-pic" src="https://pngimage.net/wp-content/uploads/2018/05/blank-profile-picture-png-2.png" width="100" height="100">
                         </div>
                         <div class="col-md-8">
-                            <h4>@Html.DisplayFor(modelItem => item.CompanyName)</h4>
+                            <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
                             <p>@Html.DisplayFor(modelItem => item.City), @Html.DisplayFor(modelItem => item.State)</p>
                         </div>
                     </div>
                     <div class="row">
-                        <p class="col-md-12">"@Html.DisplayFor(modelItem => item.Name)"</p>
+                        <h5 class="col-md-12">@Html.DisplayFor(modelItem => item.CompanyName)</h5>
                     </div>
                     <h4>Services</h4>
                     @foreach (var thing in item.Services)
@@ -47,7 +46,7 @@
                         <span>@Html.DisplayFor(modelItem => thing.Service.Name) |</span>
                     }
                     <div class="row contact-row-contractor">
-                        <div class="col-md-6"><p class="phone-number"><i class="material-icons purple">phone</i> @Html.DisplayFor(modelItem => item.PhoneNumber)</p></div>
+                        <div class="col-md-6"><p class="phone-number" style="color:brown;"> @Html.DisplayFor(modelItem => item.PhoneNumber)</p></div>
                         <div class="col-md-6 right">
                             <a class="btn btn-default blueBtn" asp-action="Details" asp-route-id="@item.ContractorId"> View Profile</a>
                         </div>

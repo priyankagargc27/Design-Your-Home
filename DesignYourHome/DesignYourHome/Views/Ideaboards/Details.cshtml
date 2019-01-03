@@ -8,18 +8,24 @@
 
 <div>
     <hr />
-    <a class="showing purpleText" asp-action="Index"><i class="material-icons purple"></i>Back to Ideaboards</a>
+    <a class="showing purpleText" style="font-size:20px;" asp-action="Index">Back to Favorites</a>
     <br>
     <br>
     <br>
+
+
+
+
     <div class="row container">
         @foreach (var image in @Model.Images)
         {
-            <div class="col-md-4 img-div">
-                <div class="img-container">
-                    <img src="@Html.DisplayFor(modelItem => image.Source)" class="image" width="300" height="300">
+        <div class="col-md-4 img-div">
+            <div class="img-container">
+
+
+                    <img src="@Html.DisplayFor(modelItem => image.Source)" class="image" width="200" height="200">
                 </div>
-                    <a class="pointer" data-toggle="modal" data-target="#modal-@Html.DisplayFor(modelItem => image.ImageId)"><i class="material-icons purple md-24">View Image</i></a>
+                <a class="pointer" data-toggle="modal" style="font-size:20px;" data-target="#modal-@Html.DisplayFor(modelItem => image.ImageId)">View Image</a>
             </div>
             <div id="modal-@Html.DisplayFor(modelItem => image.ImageId)" class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -43,5 +49,5 @@
 <br>
 <br>
 <div class="btnGroup center">
-    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.Ideaboard.IdeaboardId">Delete Design</a>
+    @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.Ideaboard.IdeaboardId">Delete Design</a>*@
 </div>
