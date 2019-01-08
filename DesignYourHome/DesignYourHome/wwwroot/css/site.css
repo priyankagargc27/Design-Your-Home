@@ -401,3 +401,9 @@ select[multiple] {
     width:350px;;
     height:350px;
 }
+.view-design{
+    color:blue;
+}
+.login{
+    margin-top:8px;
+}

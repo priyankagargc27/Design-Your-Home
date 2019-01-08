@@ -14,7 +14,7 @@
             @foreach (var item in @Model.Ideaboards)
             {<ul>
                 <li>
-                    <h4 class="purpleText image" style="margin-top: .08%">@Html.DisplayFor(modelItem => item.Title)</h4>
+                    <h4 class="view-design" style="margin-top: .08%">@Html.DisplayFor(modelItem => item.Title)</h4>
                     <a class="btn btn-danger" asp-action="Details" asp-route-id="@item.IdeaboardId">View Design</a>
                      </li>
     </ul>
